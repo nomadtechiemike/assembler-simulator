@@ -6,13 +6,15 @@ import Memory from '@/features/memory/Memory'
 
 import LearningPanel from './LearningPanel'
 import StepInsights from './StepInsights'
+import TracePanel from './TracePanel'
 
-type Panel = 'cpu' | 'memory' | 'io' | 'learn'
+type Panel = 'cpu' | 'memory' | 'io' | 'trace' | 'learn'
 
 const tabs: { id: Panel, label: string }[] = [
   { id: 'cpu', label: 'CPU' },
   { id: 'memory', label: 'Memory' },
   { id: 'io', label: 'I/O' },
+  { id: 'trace', label: 'Trace' },
   { id: 'learn', label: 'Learn' },
 ]
 
@@ -49,6 +51,13 @@ const StatePanel: FC = () => {
         </section>
         <section aria-labelledby="tab-io" hidden={active !== 'io'} id="panel-io" role="tabpanel">
           <IoDevices />
+        </section>
+        <section
+          aria-labelledby="tab-trace"
+          hidden={active !== 'trace'}
+          id="panel-trace"
+          role="tabpanel">
+          <TracePanel />
         </section>
         <section
           aria-labelledby="tab-learn"

@@ -7,6 +7,9 @@ import { selectCurrentStatementRange } from '@/features/controller/selectors'
 import { selectCpuRegisters } from '@/features/cpu/cpuSlice'
 import { selectMemoryData } from '@/features/memory/memorySlice'
 
+import { explainInstruction } from './explain'
+import { useLevel } from './level'
+
 interface Change {
   label: string
   before: number
@@ -83,12 +86,29 @@ const StepInsights: FC = () => {
     }
   }, [])
 
+  const level = useLevel()
   const instruction = range ? source.slice(range.from, range.to).trim() : ''
+  const explanation = instruction ? explainInstruction(instruction) : null
 
   return (
     <section aria-label="Execution feedback" className="step-insights">
       <div className="eyebrow">Next instruction</div>
       <code className="next-instruction">{instruction || 'Assemble a program to begin'}</code>
+      {explanation && (
+        <div className="explanation">
+          <p>{explanation.english}</p>
+          {level === 'alevel' && explanation.rtn && (
+            <p className="explanation-extra">
+              <span>RTN</span> <code>{explanation.rtn}</code>
+            </p>
+          )}
+          {level === 'alevel' && explanation.cambridge && (
+            <p className="explanation-extra">
+              <span>9618</span> <code>{explanation.cambridge}</code>
+            </p>
+          )}
+        </div>
+      )}
       <div className="eyebrow">Latest changes</div>
       {changes.length === 0
         ? <p className="muted">{notice}</p>

@@ -13,7 +13,7 @@ This fork builds a responsive learning workspace, guided practice, and a choice 
 - [Vite](https://vitejs.dev/) for fast development and build tooling
 - [TypeScript](https://www.typescriptlang.org/) for static type checking
 
-
+Experience the Assembler Simulator online [here](https://assembler-simulator.techiemike.com/).
 
 ## Features
 

@@ -120,17 +120,59 @@ const OpenExampleMenu: FC = () => (
   </MenuItem.Expandable>
 )
 
+const DEFAULT_FILE_NAME = 'file.asm'
+
+interface SaveFilePickerWindow {
+  showSaveFilePicker?: (options: {
+    suggestedName: string
+    types: { description: string, accept: Record<string, string[]> }[]
+  }) => Promise<{
+    createWritable: () => Promise<{ write: (data: Blob) => Promise<void>, close: () => Promise<void> }>
+  }>
+}
+
+const downloadAs = (fileBlob: Blob, fileName: string): void => {
+  const fileUrl = URL.createObjectURL(fileBlob)
+  const anchorElement = Object.assign(document.createElement('a'), {
+    download: fileName,
+    href: fileUrl,
+  })
+  anchorElement.click()
+  URL.revokeObjectURL(fileUrl)
+}
+
 const SaveButton: FC = () => {
   const handleClick = (): void => {
     const editorInput = store.getState(selectEditorInput)
     const fileBlob = new Blob([editorInput], { type: 'application/octet-stream' })
-    const fileUrl = URL.createObjectURL(fileBlob)
-    const anchorElement = Object.assign(document.createElement('a'), {
-      download: 'file.asm',
-      href: fileUrl,
-    })
-    anchorElement.click()
-    URL.revokeObjectURL(fileUrl)
+    const { showSaveFilePicker } = window as unknown as SaveFilePickerWindow
+
+    if (showSaveFilePicker) {
+      // Native "Save As" dialog, so the file name can be changed
+      showSaveFilePicker
+        .call(window, {
+          suggestedName: DEFAULT_FILE_NAME,
+          types: [{ description: 'Assembly file', accept: { 'text/plain': ['.asm'] } }],
+        })
+        .then(async (handle) => {
+          const writable = await handle.createWritable()
+          await writable.write(fileBlob)
+          await writable.close()
+        })
+        .catch((reason: unknown) => {
+          if (!(reason instanceof DOMException && reason.name === 'AbortError')) {
+            console.error(reason)
+          }
+        })
+      return
+    }
+
+    const input = window.prompt('Save as:', DEFAULT_FILE_NAME)
+    if (input === null) {
+      return
+    }
+    const trimmed = input.trim() || DEFAULT_FILE_NAME
+    downloadAs(fileBlob, trimmed.includes('.') ? trimmed : `${trimmed}.asm`)
   }
 
   return (

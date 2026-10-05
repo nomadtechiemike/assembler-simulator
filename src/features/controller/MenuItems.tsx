@@ -4,6 +4,13 @@ const BORDER_WIDTH = 1
 
 const className = 'divide-y border bg-gray-50 shadow fixed'
 
+const VIEWPORT_MARGIN = 4
+
+const clampLeft = (element: HTMLElement, left: number): number => {
+  const maxLeft = window.innerWidth - element.offsetWidth - VIEWPORT_MARGIN
+  return Math.max(VIEWPORT_MARGIN, Math.min(left, maxLeft))
+}
+
 type Props = PropsWithChildren<{
   menuElement: HTMLDivElement
 }>
@@ -15,7 +22,7 @@ const MenuItems: FC<Props> = ({ menuElement, children }) => {
     }
     const { bottom: menuBottom, left: menuLeft } = menuElement.getBoundingClientRect()
     element.style.top = `${menuBottom - BORDER_WIDTH}px`
-    element.style.left = `${menuLeft}px`
+    element.style.left = `${clampLeft(element, menuLeft)}px`
   }
 
   return (
@@ -36,10 +43,16 @@ const Expanded: FC<ExpandedProps> = ({ innerRef, menuItemElement, children }) =>
     if (element === null) {
       return
     }
-    const { top: menuItemTop, right: menuItemRight } = menuItemElement.getBoundingClientRect()
+    const {
+      top: menuItemTop,
+      left: menuItemLeft,
+      right: menuItemRight,
+    } = menuItemElement.getBoundingClientRect()
     const isParentFirstChild = menuItemElement.offsetTop === 0
     element.style.top = `${menuItemTop - (isParentFirstChild ? BORDER_WIDTH : 0)}px`
-    element.style.left = `${menuItemRight}px`
+    const fitsOnRight = menuItemRight + element.offsetWidth + VIEWPORT_MARGIN <= window.innerWidth
+    const left = fitsOnRight ? menuItemRight : menuItemLeft - element.offsetWidth
+    element.style.left = `${clampLeft(element, left)}px`
   }
 
   return (
