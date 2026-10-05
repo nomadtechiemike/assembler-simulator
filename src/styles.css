@@ -200,3 +200,27 @@ button:focus-visible, select:focus-visible, [role='button']:focus-visible {
 .help-list { margin-top:.5rem; padding-left:1.2rem; list-style:disc; }
 .help-list li { margin:.35rem 0; }
 .help-callout ol { margin:.5rem 0; padding-left:1.4rem; list-style:decimal; }
+
+.state-tabs button { min-width:0; padding:0 .35rem; }
+.cycle-panel { max-width:44rem; padding:.9rem 1rem 1.3rem; line-height:1.55; font-size:.88rem; }
+.cycle-instruction { margin:.3rem 0 .8rem; }
+.cycle-instruction code { padding:.15rem .4rem; border-radius:.3rem; background:var(--surface-muted); font-size:.95rem; }
+.cycle-registers { display:flex; flex-wrap:wrap; gap:.4rem; margin-bottom:.9rem; }
+.cycle-registers div { display:grid; gap:.1rem; min-width:3.6rem; padding:.3rem .55rem; border:1px solid var(--border); border-radius:.4rem; background:var(--surface-muted); text-align:center; }
+.cycle-registers span { color:var(--muted); font-size:.65rem; font-weight:700; letter-spacing:.06em; }
+.cycle-registers strong { font-family:monospace; font-size:.95rem; }
+.cycle-stage { margin-bottom:.7rem; padding:.7rem .85rem; border:1px solid var(--border); border-left:4px solid var(--accent); border-radius:.45rem; background:var(--surface); }
+.cycle-stage h3 { display:flex; align-items:center; gap:.5rem; margin-bottom:.35rem; font-size:.95rem; font-weight:700; }
+.cycle-stage h3 span { display:grid; place-items:center; width:1.35rem; height:1.35rem; border-radius:50%; background:var(--accent); color:var(--surface); font-size:.75rem; }
+.cycle-stage ol { padding-left:1.3rem; list-style:decimal; }
+.cycle-stage li { margin:.2rem 0; }
+.cycle-stage code { padding:.08rem .25rem; border-radius:.25rem; background:var(--surface-muted); }
+.cycle-stage em { color:var(--muted); font-style:normal; }
+.listing-table td { font-family:monospace; }
+.listing-table td:nth-child(3) { text-align:left; }
+.listing-current td { background:var(--surface-hover); font-weight:700; }
+.listing-label { color:var(--accent); }
+.listing-heading { margin-top:1.1rem; }
+.state-panel-content .listing-table { white-space:normal; }
+.listing-table td:nth-child(2) { max-width:11rem; overflow-wrap:anywhere; }
+.listing-table td:nth-child(1), .listing-table td:nth-child(2) { white-space:normal; }

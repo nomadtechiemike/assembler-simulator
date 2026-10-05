@@ -3,7 +3,8 @@ import type { FC } from 'react'
 const rows: [cambridge: string, simulator: string, note: string][] = [
   ['LDM #5', 'MOV AL, 05', 'Load a number. In this simulator, numbers are written in hex.'],
   ['LDD 100', 'MOV AL, [64]', 'Load from an address. Denary 100 is 64 in hex.'],
-  ['LDI 100', 'MOV AL, [BL]', 'Indirect: the address is held in a register, here BL.'],
+  ['LDI 100', 'MOV BL, [64]  then  MOV AL, [BL]', 'Indirect: address 64 holds the address of the data. Read that address into a register, then use it.'],
+  ['LDX 100', 'MOV BL, index  then  ADD BL, 64  then  MOV AL, [BL]', 'Indexed: the address is 100 plus the index register. Build it with ADD.'],
   ['STO 100', 'MOV [64], AL', 'Store the accumulator to an address.'],
   ['ADD #3', 'ADD AL, 03', 'Add a number.'],
   ['ADD 100', 'MOV BL, [64]  then  ADD AL, BL', 'ADD cannot read memory directly, so load the value into a register first.'],
@@ -58,6 +59,24 @@ const CambridgeTranslation: FC = () => (
         </tbody>
       </table>
     </div>
+    <section>
+      <h3>Addressing modes</h3>
+      <p>The 9618 syllabus names five modes. This simulator covers them like this:</p>
+      <div className="help-table-wrap">
+        <table className="help-table">
+          <thead>
+            <tr><th>Mode</th><th>9618</th><th>This simulator</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Immediate</td><td><code>LDM #5</code></td><td><code>MOV AL, 05</code>. The number is in the instruction.</td></tr>
+            <tr><td>Direct</td><td><code>LDD 100</code></td><td><code>MOV AL, [64]</code>. The address is in the instruction.</td></tr>
+            <tr><td>Indirect</td><td><code>LDI 100</code></td><td>Two steps: <code>MOV BL, [64]</code> then <code>MOV AL, [BL]</code>. Note that <code>[BL]</code> alone is <em>register indirect</em>, which is a similar idea but not the same.</td></tr>
+            <tr><td>Indexed</td><td><code>LDX 100</code></td><td>No single instruction. Add the index to the base address in a register, then use <code>[BL]</code>.</td></tr>
+            <tr><td>Relative</td><td><code>JMP +3</code> style</td><td>Not available. Jumps use labels.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
     <section>
       <h3>Here but not in 9618</h3>
       <p>

@@ -1,6 +1,11 @@
 import addTwoNumbers from './add_two_numbers.asm?raw'
+import binaryAdditionOverflow from './binary_addition_overflow.asm?raw'
 import binaryCounter from './binary_counter.asm?raw'
 import bitMasking from './bit_masking.asm?raw'
+import checkABit from './check_a_bit.asm?raw'
+import debugOffByOne from './debug_off_by_one.asm?raw'
+import debugStuckLoop from './debug_stuck_loop.asm?raw'
+import debugWrongAnswer from './debug_wrong_answer.asm?raw'
 import findLargest from './find_largest.asm?raw'
 import hardwareInterrupts from './hardware_interrupts.asm?raw'
 import keyboardInput from './keyboard_input.asm?raw'
@@ -45,6 +50,7 @@ export const templateSelection = (() => {
 
 export const examples: readonly Example[] = [
   addTwoNumbers,
+  binaryAdditionOverflow,
   multiplyByAdding,
   overflow,
   findLargest,
@@ -52,6 +58,10 @@ export const examples: readonly Example[] = [
   binaryCounter,
   shifts,
   bitMasking,
+  checkABit,
+  debugStuckLoop,
+  debugWrongAnswer,
+  debugOffByOne,
   procedures,
   softwareInterrupts,
   hardwareInterrupts,

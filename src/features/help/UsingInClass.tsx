@@ -54,11 +54,20 @@ const UsingInClass: FC = () => (
       <dl className="help-definition-list">
         <div>
           <dt>IGCSE</dt>
-          <dd>Add Two Numbers · Multiply by Repeated Addition · Find the Largest Number · Binary Counter · Traffic Light Sequence · Visual Display Unit</dd>
+          <dd>
+            Add Two Numbers · Binary Addition and Overflow · Shifts · Binary Counter ·
+            Multiply by Repeated Addition · Traffic Light Sequence · Debug Me 1–3.
+            The IGCSE course does not ask you to write assembly. Use these to trace what the CPU does,
+            and to practise trace tables and overflow.
+          </dd>
         </div>
         <div>
           <dt>AS/A Level</dt>
-          <dd>Overflow · Shifts · Bit Masking · Reverse a String Using the Stack · Procedures · Software and Hardware Interrupts · Keyboard Input</dd>
+          <dd>
+            Overflow (signed) · Shifts · Bit Masking · Check a Bit · Find the Largest Number ·
+            Reverse a String Using the Stack · Procedures · Software and Hardware Interrupts ·
+            Keyboard Input · Debug Me 1–3
+          </dd>
         </div>
       </dl>
     </section>

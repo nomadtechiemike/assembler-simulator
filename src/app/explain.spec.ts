@@ -24,6 +24,11 @@ describe('explainInstruction', () => {
     expect(explainInstruction('OUT 01')?.english).toBe('Send the value in AL to the traffic lights.')
   })
 
+  it('does not call register-indirect loads LDI', () => {
+    expect(explainInstruction('MOV AL, [BL]')?.cambridge).toBeUndefined()
+    expect(explainInstruction('MOV AL, [64]')?.cambridge).toBe('LDD 64')
+  })
+
   it('returns null for unknown text', () => {
     expect(explainInstruction('')).toBeNull()
     expect(explainInstruction('FOO AL')).toBeNull()

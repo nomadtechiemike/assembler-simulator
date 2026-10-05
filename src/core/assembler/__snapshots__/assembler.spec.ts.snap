@@ -29,6 +29,35 @@ exports[`Assembler > should assemble example Add Two Numbers 1`] = `
 ]
 `;
 
+exports[`Assembler > should assemble example Binary Addition and Overflow 1`] = `
+[
+  {
+    "buffer": Uint8Array [208, 0, 200],
+    "offset": 0,
+  },
+  {
+    "buffer": Uint8Array [241, 1],
+    "offset": 3,
+  },
+  {
+    "buffer": Uint8Array [208, 1, 100],
+    "offset": 5,
+  },
+  {
+    "buffer": Uint8Array [160, 0, 1],
+    "offset": 8,
+  },
+  {
+    "buffer": Uint8Array [241, 1],
+    "offset": 11,
+  },
+  {
+    "buffer": Uint8Array [0],
+    "offset": 13,
+  },
+]
+`;
+
 exports[`Assembler > should assemble example Binary Counter 1`] = `
 [
   {
@@ -155,6 +184,170 @@ exports[`Assembler > should assemble example Bit Masking 1`] = `
   {
     "buffer": Uint8Array [192, 206],
     "offset": 50,
+  },
+  {
+    "buffer": Uint8Array [165, 1],
+    "offset": 64,
+  },
+  {
+    "buffer": Uint8Array [194, 254],
+    "offset": 66,
+  },
+  {
+    "buffer": Uint8Array [203],
+    "offset": 68,
+  },
+]
+`;
+
+exports[`Assembler > should assemble example Check a Bit 1`] = `
+[
+  {
+    "buffer": Uint8Array [240, 0],
+    "offset": 0,
+  },
+  {
+    "buffer": Uint8Array [186, 0, 1],
+    "offset": 2,
+  },
+  {
+    "buffer": Uint8Array [193, 9],
+    "offset": 5,
+  },
+  {
+    "buffer": Uint8Array [208, 0, 128],
+    "offset": 7,
+  },
+  {
+    "buffer": Uint8Array [241, 1],
+    "offset": 10,
+  },
+  {
+    "buffer": Uint8Array [192, 244],
+    "offset": 12,
+  },
+  {
+    "buffer": Uint8Array [208, 0, 32],
+    "offset": 14,
+  },
+  {
+    "buffer": Uint8Array [241, 1],
+    "offset": 17,
+  },
+  {
+    "buffer": Uint8Array [192, 237],
+    "offset": 19,
+  },
+]
+`;
+
+exports[`Assembler > should assemble example Debug Me 1: Stuck Loop 1`] = `
+[
+  {
+    "buffer": Uint8Array [208, 0, 0],
+    "offset": 0,
+  },
+  {
+    "buffer": Uint8Array [208, 2, 5],
+    "offset": 3,
+  },
+  {
+    "buffer": Uint8Array [160, 0, 2],
+    "offset": 6,
+  },
+  {
+    "buffer": Uint8Array [219, 2, 0],
+    "offset": 9,
+  },
+  {
+    "buffer": Uint8Array [194, 250],
+    "offset": 12,
+  },
+  {
+    "buffer": Uint8Array [241, 1],
+    "offset": 14,
+  },
+  {
+    "buffer": Uint8Array [0],
+    "offset": 16,
+  },
+]
+`;
+
+exports[`Assembler > should assemble example Debug Me 2: Wrong Answer 1`] = `
+[
+  {
+    "buffer": Uint8Array [208, 0, 0],
+    "offset": 0,
+  },
+  {
+    "buffer": Uint8Array [208, 1, 6],
+    "offset": 3,
+  },
+  {
+    "buffer": Uint8Array [208, 2, 4],
+    "offset": 6,
+  },
+  {
+    "buffer": Uint8Array [160, 0, 2],
+    "offset": 9,
+  },
+  {
+    "buffer": Uint8Array [165, 2],
+    "offset": 12,
+  },
+  {
+    "buffer": Uint8Array [194, 251],
+    "offset": 14,
+  },
+  {
+    "buffer": Uint8Array [241, 1],
+    "offset": 16,
+  },
+  {
+    "buffer": Uint8Array [0],
+    "offset": 18,
+  },
+]
+`;
+
+exports[`Assembler > should assemble example Debug Me 3: Off by One 1`] = `
+[
+  {
+    "buffer": Uint8Array [208, 0, 0],
+    "offset": 0,
+  },
+  {
+    "buffer": Uint8Array [164, 0],
+    "offset": 3,
+  },
+  {
+    "buffer": Uint8Array [219, 0, 5],
+    "offset": 5,
+  },
+  {
+    "buffer": Uint8Array [193, 11],
+    "offset": 8,
+  },
+  {
+    "buffer": Uint8Array [241, 1],
+    "offset": 10,
+  },
+  {
+    "buffer": Uint8Array [208, 1, 16],
+    "offset": 12,
+  },
+  {
+    "buffer": Uint8Array [202, 64],
+    "offset": 15,
+  },
+  {
+    "buffer": Uint8Array [192, 242],
+    "offset": 17,
+  },
+  {
+    "buffer": Uint8Array [0],
+    "offset": 19,
   },
   {
     "buffer": Uint8Array [165, 1],

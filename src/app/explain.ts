@@ -97,7 +97,7 @@ export const explainInstruction = (statement: string): Explanation | null => {
       return {
         english: `Copy the value from ${describeSource(second)} into ${dest}.`,
         rtn: `${dest} ← [${inner.toUpperCase()}]`,
-        cambridge: REGISTER.test(inner) ? 'LDI' : `LDD ${inner.toUpperCase()}`,
+        cambridge: REGISTER.test(inner) ? undefined : `LDD ${inner.toUpperCase()}`,
       }
     }
     return {
