@@ -4,6 +4,7 @@ import { store, useSelector } from '@/app/store'
 import Anchor from '@/common/components/Anchor'
 import Modal from '@/common/components/Modal'
 import { useOutsideClick } from '@/common/hooks'
+import { REPOSITORY_URL } from '@/common/links'
 
 import { clearException, selectException } from './exceptionSlice'
 
@@ -52,10 +53,8 @@ const ExceptionModal: FC = () => {
                 )
           })}
         <div>
-          Please report this bug at{' '}
-          <Anchor href="https://github.com/exuanbo/assembler-simulator/issues">
-            https://github.com/exuanbo/assembler-simulator/issues
-          </Anchor>
+          A bug occurred. View the project on{' '}
+          <Anchor href={REPOSITORY_URL}>GitHub</Anchor>
           .
         </div>
       </div>

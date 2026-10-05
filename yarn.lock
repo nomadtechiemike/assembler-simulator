@@ -2290,7 +2290,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@lezer/highlight@npm:^1.0.0":
+"@lezer/highlight@npm:1.2.3, @lezer/highlight@npm:^1.0.0":
   version: 1.2.3
   resolution: "@lezer/highlight@npm:1.2.3"
   dependencies:
@@ -3888,6 +3888,7 @@ __metadata:
     "@codemirror/state": "npm:6.5.2"
     "@codemirror/view": "npm:6.38.6"
     "@eslint/js": "npm:9.38.0"
+    "@lezer/highlight": "npm:1.2.3"
     "@reduxjs/toolkit": "npm:2.9.2"
     "@replit/codemirror-vim": "npm:6.3.0"
     "@stylistic/eslint-plugin": "npm:5.5.0"

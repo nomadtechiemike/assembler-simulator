@@ -19,7 +19,7 @@ const MenuItems: FC<Props> = ({ menuElement, children }) => {
   }
 
   return (
-    <div ref={refCallback} className={className}>
+    <div ref={refCallback} className={className} role="menu">
       {children}
     </div>
   )
@@ -43,7 +43,7 @@ const Expanded: FC<ExpandedProps> = ({ innerRef, menuItemElement, children }) =>
   }
 
   return (
-    <div ref={refCallback} className={className}>
+    <div ref={refCallback} className={className} role="menu">
       {children}
     </div>
   )

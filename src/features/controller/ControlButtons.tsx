@@ -3,25 +3,23 @@ import type { FC, PropsWithChildren } from 'react'
 import { useSelector } from '@/app/store'
 import { Arrow, Forward, Play, Stop, Undo } from '@/common/components/icons'
 import { NO_BREAK_SPACE } from '@/common/constants'
-import { classNames } from '@/common/utils'
 
 import { selectIsRunning, selectIsSuspended } from './controllerSlice'
 import { useController } from './hooks'
 
 type ButtonProps = PropsWithChildren<{
-  onClick?: React.MouseEventHandler<HTMLDivElement>
+  onClick?: React.MouseEventHandler<HTMLButtonElement>
   disabled?: boolean
 }>
 
 const ControlButton: FC<ButtonProps> = ({ onClick, disabled = false, children }) => (
-  <div
-    className={classNames(
-      'flex space-x-2 py-1 px-2 items-center',
-      disabled ? 'text-gray-400 fill-gray-400' : 'hover:(bg-gray-200 active:bg-gray-300)',
-    )}
-    onClick={disabled ? undefined : onClick}>
+  <button
+    className="control-button"
+    disabled={disabled}
+    type="button"
+    onClick={onClick}>
     {children}
-  </div>
+  </button>
 )
 
 // TODO: useMemo
