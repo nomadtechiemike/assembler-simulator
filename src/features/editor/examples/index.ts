@@ -4,6 +4,7 @@ import procedures from './procedures.asm?raw'
 import sevenSegmentDisplay from './seven_segment_display.asm?raw'
 import softwareInterrupts from './software_interrupts.asm?raw'
 import template from './template.asm?raw'
+import trafficLightSequence from './traffic_light_sequence.asm?raw'
 import trafficLights from './traffic_lights.asm?raw'
 import visualDisplayUnit from './visual_display_unit.asm?raw'
 
@@ -41,6 +42,7 @@ export const examples: readonly Example[] = [
   keyboardInput,
   visualDisplayUnit,
   trafficLights,
+  trafficLightSequence,
   sevenSegmentDisplay,
 ].map((content) => {
   return {
