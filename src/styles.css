@@ -191,3 +191,12 @@ button:focus-visible, select:focus-visible, [role='button']:focus-visible {
 .trace-table th { background:var(--surface-muted); color:var(--muted); font-size:.7rem; letter-spacing:.05em; }
 .trace-table td:nth-child(2) { text-align:left; font-family:monospace; }
 .trace-table tr:last-child td { background:var(--surface-muted); font-weight:700; }
+
+.help-table-wrap { overflow-x:auto; border:1px solid var(--border); border-radius:.5rem; }
+.help-table { width:100%; border-collapse:collapse; font-size:.85rem; }
+.help-table th { padding:.55rem .75rem; background:var(--surface-muted); color:var(--muted); font-size:.7rem; letter-spacing:.06em; text-align:left; text-transform:uppercase; }
+.help-table td { padding:.55rem .75rem; border-top:1px solid var(--border); vertical-align:top; }
+.help-table td:first-child { white-space:nowrap; }
+.help-list { margin-top:.5rem; padding-left:1.2rem; list-style:disc; }
+.help-list li { margin:.35rem 0; }
+.help-callout ol { margin:.5rem 0; padding-left:1.4rem; list-style:decimal; }

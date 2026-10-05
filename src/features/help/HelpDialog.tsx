@@ -4,15 +4,28 @@ import Anchor from '@/common/components/Anchor'
 import Modal from '@/common/components/Modal'
 import { REPOSITORY_URL } from '@/common/links'
 
+import CambridgeTranslation from './CambridgeTranslation'
+import CommonMistakes from './CommonMistakes'
 import GettingStarted from './GettingStarted'
 import InstructionReference from './InstructionReference'
 import MemoryAndIo from './MemoryAndIo'
+import UsingInClass from './UsingInClass'
 
-export type HelpPage = 'start' | 'instructions' | 'memory' | 'about'
+export type HelpPage =
+  | 'start'
+  | 'class'
+  | 'instructions'
+  | 'cambridge'
+  | 'mistakes'
+  | 'memory'
+  | 'about'
 
 const pages: { id: HelpPage, title: string }[] = [
   { id: 'start', title: 'Getting started' },
+  { id: 'class', title: 'Using this in class' },
   { id: 'instructions', title: 'Instruction set' },
+  { id: 'cambridge', title: 'Cambridge 9618 translation' },
+  { id: 'mistakes', title: 'Common mistakes' },
   { id: 'memory', title: 'Memory & I/O' },
   { id: 'about', title: 'About' },
 ]
@@ -104,7 +117,10 @@ const HelpDialog: FC<Props> = ({ page, onClose, onPageChange }) => {
             <span className="eyebrow">Local guide</span>
             <h2 id="help-page-title">{pages.find(({ id }) => id === page)?.title}</h2>
             {page === 'start' && <GettingStarted />}
+            {page === 'class' && <UsingInClass />}
             {page === 'instructions' && <InstructionReference />}
+            {page === 'cambridge' && <CambridgeTranslation />}
+            {page === 'mistakes' && <CommonMistakes />}
             {page === 'memory' && <MemoryAndIo />}
             {page === 'about' && <About />}
           </main>

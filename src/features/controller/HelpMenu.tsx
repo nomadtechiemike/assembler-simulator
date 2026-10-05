@@ -12,7 +12,10 @@ import MenuItems from './MenuItems'
 
 const helpPages: { id: HelpPage, title: string }[] = [
   { id: 'start', title: 'Getting started' },
+  { id: 'class', title: 'Using this in class' },
   { id: 'instructions', title: 'Instruction set' },
+  { id: 'cambridge', title: 'Cambridge 9618 translation' },
+  { id: 'mistakes', title: 'Common mistakes' },
   { id: 'memory', title: 'Memory & I/O' },
   { id: 'about', title: 'About' },
 ]
