@@ -43,10 +43,16 @@ const Expanded: FC<ExpandedProps> = ({ innerRef, menuItemElement, children }) =>
     if (element === null) {
       return
     }
-    const { top: menuItemTop, right: menuItemRight } = menuItemElement.getBoundingClientRect()
+    const {
+      top: menuItemTop,
+      left: menuItemLeft,
+      right: menuItemRight,
+    } = menuItemElement.getBoundingClientRect()
     const isParentFirstChild = menuItemElement.offsetTop === 0
     element.style.top = `${menuItemTop - (isParentFirstChild ? BORDER_WIDTH : 0)}px`
-    element.style.left = `${clampLeft(element, menuItemRight)}px`
+    const fitsOnRight = menuItemRight + element.offsetWidth + VIEWPORT_MARGIN <= window.innerWidth
+    const left = fitsOnRight ? menuItemRight : menuItemLeft - element.offsetWidth
+    element.style.left = `${clampLeft(element, left)}px`
   }
 
   return (
