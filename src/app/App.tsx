@@ -6,7 +6,6 @@ import ErrorBoundary from '@/features/exception/ErrorBoundary'
 import ExceptionModal from '@/features/exception/ExceptionModal'
 import { useGlobalExceptionHandler } from '@/features/exception/hooks'
 
-import { useAckee } from './hooks'
 import ReloadPrompt from './ReloadPrompt'
 import ResizablePanel from './ResizablePanel'
 import StatePanel from './StatePanel'
@@ -14,7 +13,6 @@ import { useTheme } from './theme'
 
 const App: FC = () => {
   useGlobalExceptionHandler()
-  useAckee()
   const { choice, setChoice } = useTheme()
   const [mobileView, setMobileView] = useState<'code' | 'state'>('code')
 
