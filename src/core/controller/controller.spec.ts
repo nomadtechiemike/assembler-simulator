@@ -17,6 +17,6 @@ describe('Controller', () => {
 
     const controller = container.resolve(Controller)
     await firstValueFrom(controller.step())
-    expect(memory.getData()[0x02]).toBe(0x03)
+    expect((await firstValueFrom(memory.buffer$))[0x02]).toBe(0x03)
   })
 })

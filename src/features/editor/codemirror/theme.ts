@@ -7,6 +7,8 @@ export const theme = (): Extension => {
   return EditorView.theme({
     '&': {
       height: '100%',
+      backgroundColor: 'var(--surface)',
+      color: 'var(--text)',
     },
     [`&.${InternalClassName.Focused}`]: {
       outline: '0',
@@ -16,13 +18,13 @@ export const theme = (): Extension => {
       fontFamily: "'Jetbrains Mono', monospace",
     },
     [`.${InternalClassName.Gutters}`]: {
-      borderRight: '1px solid #e5e7eb',
-      backgroundColor: '#f3f4f6', // gray-100
+      borderRight: '1px solid var(--border)',
+      backgroundColor: 'var(--surface-muted)',
       cursor: 'initial',
-      color: '#9ca3af', // gray-400
+      color: 'var(--muted)',
     },
     [`.${InternalClassName.Cursor}`]: {
-      borderLeft: '2px solid black',
+      borderLeft: '2px solid var(--text)',
     },
     [`&:not(.${InternalClassName.Focused}) .${InternalClassName.CursorPrimary}`]: {
       outline: '0 !important',

@@ -127,7 +127,7 @@ const VimKeybindingsSwitch: FC = () => {
 }
 
 const ConfigurationMenu: FC = () => (
-  <Menu>
+  <Menu label="Configuration">
     {(isOpen, hoverRef, menuElement) => (
       <>
         <MenuButton.Main ref={hoverRef}>

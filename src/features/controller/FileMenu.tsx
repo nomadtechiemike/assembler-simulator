@@ -60,8 +60,12 @@ const OpenButton: FC<OpenButtonProps> = ({ onFileLoad }) => {
   }
 
   const handleSelectFile: React.ChangeEventHandler<HTMLInputElement> = (event) => {
-    const file = event.target.files![0]
+    const file = event.target.files?.[0]
+    if (!file) {
+      return
+    }
     loadFile(file)
+    event.target.value = ''
     onFileLoad()
   }
 
@@ -158,7 +162,7 @@ const CopyLinkButton: FC = () => {
 }
 
 const FileMenu: FC = () => (
-  <Menu>
+  <Menu label="File">
     {(isOpen, hoverRef, menuElement) => (
       <>
         <MenuButton.Main ref={hoverRef}>

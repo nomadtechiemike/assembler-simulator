@@ -36,7 +36,7 @@ export const highlightActiveLineGutter = (): Extension => {
     activeLineGutterHighlighter,
     EditorView.baseTheme({
       [`&.${InternalClassName.Focused} .${ClassName.ActiveLineGutter}`]: {
-        color: '#4b5563', // gray-600
+        color: 'var(--text)',
       },
       [`.${ClassName.ActiveLineGutter}`]: {
         backgroundColor: 'unset',

@@ -32,16 +32,10 @@ const ResizablePanel: FC<ResizablePanelProps> = ({
 }) => {
   const containerRef = useRef<HTMLDivElement>(null)
   const dividerRef = useRef<HTMLDivElement>(null)
-  const rightChildRef = useRef<HTMLDivElement>(null)
 
   const getTotalWidth = useCallback(
     () => getOffsetWidth(containerRef) - getOffsetWidth(dividerRef),
     [],
-  )
-
-  const getAvailableWidth = useCallback(
-    () => getTotalWidth() - getOffsetWidth(rightChildRef),
-    [getTotalWidth],
   )
 
   const [leftChildWidth, __setLeftChildWidth] = useState<number>()
@@ -52,27 +46,35 @@ const ResizablePanel: FC<ResizablePanelProps> = ({
     __setLeftChildWidth(roundedWidth)
   }
 
-  const resetLeftChildWidth = useCallback(
-    () => setLeftChildWidth(getTotalWidth() / 2),
-    [getTotalWidth],
-  )
-
-  useLayoutEffect(() => {
-    if (!isReady) {
-      // eslint-disable-next-line react-hooks/set-state-in-effect
-      resetLeftChildWidth()
+  const resetLeftChildWidth = useCallback(() => {
+    const totalWidth = getTotalWidth()
+    if (totalWidth > 0) {
+      setLeftChildWidth(totalWidth / 2)
     }
-  }, [isReady, resetLeftChildWidth])
+  }, [getTotalWidth])
 
   useLayoutEffect(() => {
-    if (leftChildWidth !== undefined) {
-      const availableWidth = getAvailableWidth()
-      if (leftChildWidth > availableWidth) {
-        // eslint-disable-next-line react-hooks/set-state-in-effect
-        setLeftChildWidth(availableWidth)
+    const container = containerRef.current
+    if (!container) {
+      return
+    }
+    const updateWidth = () => {
+      const totalWidth = getTotalWidth()
+      if (totalWidth <= 0) {
+        return
       }
+      __setLeftChildWidth((current) => {
+        if (current === undefined) {
+          return Math.round(totalWidth / 2)
+        }
+        return Math.round(clamp(current, totalWidth * MIN_WIDTH_PERCENTAGE, totalWidth * MAX_WIDTH_PERCENTAGE))
+      })
     }
-  }, [getAvailableWidth, leftChildWidth])
+    updateWidth()
+    const observer = new ResizeObserver(updateWidth)
+    observer.observe(container)
+    return () => observer.disconnect()
+  }, [getTotalWidth])
 
   const [isDragging, setDragging] = useState(false)
 
@@ -111,13 +113,6 @@ const ResizablePanel: FC<ResizablePanelProps> = ({
 
       const widthAdjusted = percentageAdjusted * totalWidth
 
-      if (percentageAdjusted === MAX_WIDTH_PERCENTAGE) {
-        const availableWidth = getAvailableWidth()
-        if (widthAdjusted > availableWidth) {
-          setLeftChildWidth(availableWidth)
-          return
-        }
-      }
       setLeftChildWidth(widthAdjusted)
     }, throttleMs)
 
@@ -132,18 +127,18 @@ const ResizablePanel: FC<ResizablePanelProps> = ({
       document.removeEventListener('mousemove', handleMouseMove)
       document.removeEventListener('mouseup', handleMouseUp)
     }
-  }, [getAvailableWidth, getTotalWidth, isDragging, throttleMs])
+  }, [getTotalWidth, isDragging, throttleMs])
 
   return (
     <>
       <div ref={containerRef} className={classNames('flex', className)}>
-        <div className={classNames({ hidden: !isReady })} style={{ width: leftChildWidth }}>
+        <div className={classNames('workspace-editor-pane', { hidden: !isReady })} style={{ width: leftChildWidth }}>
           {leftChild}
         </div>
         <div
           ref={dividerRef}
           className={classNames(
-            'border-x cursor-col-resize flex flex-col space-y-2 px-1 justify-center group hover:bg-gray-200',
+            'workspace-divider border-x cursor-col-resize flex flex-col space-y-2 px-1 justify-center group hover:bg-gray-200',
             isReady ? (isDragging ? 'bg-gray-200' : 'bg-gray-100') : 'invisible',
           )}
           onMouseDown={handleMouseDown}>
@@ -157,7 +152,7 @@ const ResizablePanel: FC<ResizablePanelProps> = ({
             />
           ))}
         </div>
-        <div ref={rightChildRef} className={classNames('flex-1', { hidden: !isReady })}>
+        <div className={classNames('workspace-state-pane flex-1', { hidden: !isReady })}>
           {rightChild}
         </div>
       </div>

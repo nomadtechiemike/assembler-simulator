@@ -8,6 +8,17 @@
       name="description"
       content="The Assembler Simulator is an 8-bit CPU simulation tool that utilizes the Samphire sms32v50 Microprocessor Simulator instruction set." />
     <meta name="theme-color" content="#ffffff" />
+    <script>
+      try {
+        const choice = localStorage.getItem('assembler-simulator-theme')
+        document.documentElement.dataset.theme = choice === 'light' || choice === 'dark'
+          ? choice
+          : matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+      }
+      catch {
+        document.documentElement.dataset.theme = 'light'
+      }
+    </script>
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="preconnect" crossorigin="anonymous" href="https://fonts.gstatic.com" />

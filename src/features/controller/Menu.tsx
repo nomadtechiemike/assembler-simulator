@@ -27,6 +27,7 @@ if (import.meta.env.DEV) {
 }
 
 interface Props {
+  label: string
   children: (
     isOpen: boolean,
     hoverRef: RefCallback<HTMLDivElement>,
@@ -34,7 +35,7 @@ interface Props {
   ) => ReactNode
 }
 
-const Menu: FC<Props> = ({ children }) => {
+const Menu: FC<Props> = ({ children, label }) => {
   const [menuElement, menuRef] = useRefCallback<HTMLDivElement>()
   const isReady = menuElement !== null
 
@@ -59,8 +60,23 @@ const Menu: FC<Props> = ({ children }) => {
   return (
     <div
       ref={menuRef}
+      aria-expanded={isOpen}
+      aria-haspopup="menu"
+      aria-label={label}
       className={classNames('flex items-center hover:bg-gray-200', { 'bg-gray-200': isOpen })}
-      onClick={toggleOpen}>
+      role="button"
+      tabIndex={0}
+      onClick={toggleOpen}
+      onKeyDown={(event) => {
+        if (event.target === event.currentTarget && (event.key === 'Enter' || event.key === ' ')) {
+          event.preventDefault()
+          toggleOpen()
+        }
+        if (event.key === 'Escape' && isOpen) {
+          event.stopPropagation()
+          setCurrentOpen(null)
+        }
+      }}>
       {isReady && children(isOpen, hoverRef, menuElement)}
     </div>
   )

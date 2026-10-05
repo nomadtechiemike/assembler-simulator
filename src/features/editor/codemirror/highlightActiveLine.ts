@@ -61,7 +61,7 @@ export const highlightActiveLine = (): Extension => {
     highlightActiveLinePlugin,
     EditorView.baseTheme({
       [`&.${InternalClassName.Focused} .${ClassName.ActiveLine}`]: {
-        boxShadow: 'inset 0 0 0 2px #e5e7eb',
+        boxShadow: 'inset 0 0 0 2px var(--border)',
       },
       [`.${ClassName.ActiveLine}`]: {
         backgroundColor: 'unset',

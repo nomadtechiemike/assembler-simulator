@@ -80,10 +80,10 @@ export const highlightLine = (): Extension => {
     highlightLineField,
     EditorView.baseTheme({
       [`.${ClassName.HighlightLineDefault}`]: {
-        backgroundColor: '#dcfce7 !important',
+        backgroundColor: 'var(--current-line) !important',
       },
       [`.${ClassName.HighlightLineTransparent}`]: {
-        backgroundColor: '#dcfce780 !important',
+        backgroundColor: 'var(--current-line-soft) !important',
       },
     }),
   ]

@@ -12,7 +12,17 @@ type Props = PropsWithChildren<{
 }>
 
 const MenuItem: FC<Props> = ({ onClick, children }) => (
-  <div className={className} onClick={onClick}>
+  <div
+    className={className}
+    role="menuitem"
+    tabIndex={0}
+    onClick={onClick}
+    onKeyDown={(event) => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault()
+        event.currentTarget.click()
+      }
+    }}>
     {children}
     <span className="w-4" />
   </div>
@@ -48,6 +58,7 @@ const Expandable: FC<ExpandableProps> = ({ children }) => {
   const isReady = menuItemElement !== null
 
   const [isHovered, setHovered] = useState(false)
+  const [isFocused, setFocused] = useState(false)
   const hoverRef = useHover(setHovered, /* delay: */ 100)
 
   const refCallback: RefCallback<HTMLDivElement> = (element) => {
@@ -65,10 +76,32 @@ const Expandable: FC<ExpandableProps> = ({ children }) => {
   }
 
   return (
-    <div ref={refCallback} className={className} onClick={handleClick}>
+    <div
+      ref={refCallback}
+      aria-expanded={isHovered || isFocused}
+      aria-haspopup="menu"
+      className={className}
+      role="menuitem"
+      tabIndex={0}
+      onBlur={(event) => {
+        if (!event.currentTarget.contains(event.relatedTarget)) {
+          setFocused(false)
+        }
+      }}
+      onClick={(event) => {
+        setFocused(true)
+        handleClick(event)
+      }}
+      onFocus={() => setFocused(true)}
+      onKeyDown={(event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault()
+          setFocused(true)
+        }
+      }}>
       {isReady && (
         <>
-          <div>{children(isHovered, menuItemsRef, menuItemElement)}</div>
+          <div>{children(isHovered || isFocused, menuItemsRef, menuItemElement)}</div>
           <div className="w-4">
             <Play className="mx-auto" width="0.625rem" />
           </div>

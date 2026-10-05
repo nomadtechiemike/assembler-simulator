@@ -1,13 +1,14 @@
 import type { CloseBracketConfig } from '@codemirror/autocomplete'
 import type { CommentTokens } from '@codemirror/commands'
 import {
-  defaultHighlightStyle,
+  HighlightStyle,
   indentUnit,
   LanguageSupport,
   StreamLanguage,
   syntaxHighlighting,
 } from '@codemirror/language'
 import type { Extension } from '@codemirror/state'
+import { tags } from '@lezer/highlight'
 
 import { Mnemonic, MnemonicToOperandCountMap } from '@/common/constants'
 import { isIn } from '@/common/utils'
@@ -114,9 +115,18 @@ const asmLanguage = StreamLanguage.define<State>({
   },
 })
 
+const asmHighlightStyle = HighlightStyle.define([
+  { tag: tags.comment, color: 'var(--syntax-comment)' },
+  { tag: tags.keyword, color: 'var(--syntax-keyword)', fontWeight: '700' },
+  { tag: tags.number, color: 'var(--syntax-number)' },
+  { tag: tags.string, color: 'var(--syntax-string)' },
+  { tag: tags.labelName, color: 'var(--syntax-label)', fontWeight: '700' },
+  { tag: tags.special(tags.variableName), color: 'var(--syntax-variable)' },
+])
+
 export const asm = (): Extension => {
   return [
     new LanguageSupport(asmLanguage, [indentUnit.of('\t')]),
-    syntaxHighlighting(defaultHighlightStyle),
+    syntaxHighlighting(asmHighlightStyle),
   ]
 }

@@ -78,7 +78,7 @@ const IoMenu: FC = () => {
 }
 
 const ViewMenu: FC = () => (
-  <Menu>
+  <Menu label="View">
     {(isOpen, hoverRef, menuElement) => (
       <>
         <MenuButton.Main ref={hoverRef}>
