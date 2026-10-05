@@ -1,5 +1,6 @@
 import { type FC, useCallback, useMemo, useState } from 'react'
 
+import LevelControl from '@/app/LevelControl'
 import type { ThemeChoice } from '@/app/theme'
 import ThemeControl from '@/app/ThemeControl'
 import Anchor from '@/common/components/Anchor'
@@ -51,6 +52,7 @@ const ToolBar: FC<Props> = ({ theme, onThemeChange }) => {
           </Anchor>
         </div>
         <ExecutionStatus />
+        <LevelControl />
         <ThemeControl choice={theme} onChange={onThemeChange} />
       </div>
       <div className="workspace-actions">

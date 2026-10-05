@@ -175,3 +175,19 @@ button:focus-visible, select:focus-visible, [role='button']:focus-visible {
   .help-card-grid, .help-instruction-row { grid-template-columns:1fr; }
   .help-instruction-row { gap:.2rem; }
 }
+
+.level-control { margin-left:auto; }
+.level-control + .theme-control { margin-left:0; }
+.explanation { margin:-.4rem 0 .8rem; font-size:.85rem; line-height:1.45; }
+.explanation-extra { margin-top:.25rem; color:var(--muted); font-size:.78rem; }
+.explanation-extra span { margin-right:.35rem; padding:.05rem .35rem; border:1px solid var(--border); border-radius:999px; font-size:.65rem; font-weight:700; letter-spacing:.06em; }
+.explanation-extra code { color:var(--text); }
+.trace-panel { padding:.9rem 1rem 1.2rem; }
+.trace-actions { display:flex; align-items:center; gap:.5rem; margin-bottom:.6rem; }
+.trace-actions button { padding:.3rem .65rem; border:1px solid var(--border); border-radius:.4rem; background:var(--surface); color:var(--text); font-size:.78rem; }
+.trace-actions button:hover { background:var(--surface-hover); }
+.trace-table { border-collapse:collapse; font-size:.8rem; }
+.trace-table th, .trace-table td { padding:.25rem .6rem; border:1px solid var(--border); text-align:center; }
+.trace-table th { background:var(--surface-muted); color:var(--muted); font-size:.7rem; letter-spacing:.05em; }
+.trace-table td:nth-child(2) { text-align:left; font-family:monospace; }
+.trace-table tr:last-child td { background:var(--surface-muted); font-weight:700; }
